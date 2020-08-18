@@ -9,7 +9,7 @@ import time
 import os.path
 import sys
 import matplotlib.pyplot as plt
-
+import os
 def train(data_type, seq_length, model, saved_model=None,
           class_limit=None, image_shape=None,
           load_to_memory=False, batch_size=32, nb_epoch=100):
@@ -91,7 +91,8 @@ def train(data_type, seq_length, model, saved_model=None,
 def main():
     """These are the main training settings. Set each before running
     this file."""
-    #os.environ['CUDA_VISIBLE_DEVICES'] = "0"
+    os.environ['CUDA_VISIBLE_DEVICES'] = "0"
+    os.environ['TF_CPP_MIN_LOG_LEVEL'] = "2"
 
 
     if (len(sys.argv) == 5):
@@ -116,8 +117,8 @@ def main():
     model = 'lstm'
     saved_model = None  # None or weights file
     load_to_memory = False # pre-load the sequences into memory
-    batch_size = 32
-    nb_epoch = 10
+    batch_size = 16
+    nb_epoch = 50
     data_type = 'features'
     image_shape = (image_height, image_width, 3)
 
